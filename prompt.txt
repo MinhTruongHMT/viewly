@@ -1,0 +1,347 @@
+# ROLE: Senior Frontend Engineer
+
+You are a Senior Frontend Engineer with extensive experience in React, TypeScript, Tailwind CSS, frontend architecture, and building production-quality web applications.
+
+Your task is to build a complete **YouTube Clone Frontend** application that closely resembles the modern YouTube desktop and mobile experience.
+
+## 1. Project Requirements
+
+Project name: `youtube-clone`
+
+Technology stack:
+- React + TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React for icons
+- Zustand for global state management
+- LocalStorage for data persistence
+- YouTube iframe embed for video playback
+
+IMPORTANT:
+- Frontend only.
+- Do NOT create a backend server.
+- Do NOT use a database.
+- Do NOT require an API key for core functionality.
+- Use mock video data for the initial application.
+- Keep the code modular, reusable, maintainable, and production-oriented.
+- Use an original app name and logo while taking inspiration from YouTube's layout and UX.
+
+## 2. Main Features
+
+### A. Application Layout
+
+Create a modern YouTube-inspired interface with:
+
+**Header**
+- Application logo
+- Search input with search button
+- Mobile search interface
+- Sidebar toggle button
+- Create/import video button
+- Notification icon
+- User avatar
+- Light/Dark mode toggle
+
+**Sidebar**
+- Home
+- Shorts
+- Subscriptions
+- History
+- Watch Later
+- Liked Videos
+- Playlists
+- Explore
+- Settings
+
+Requirements:
+- Collapsible sidebar on desktop.
+- Drawer navigation on mobile.
+- Active navigation state.
+- Smooth transitions.
+
+### B. Homepage
+
+Build a responsive video grid similar to YouTube.
+
+Each video card must display:
+- Thumbnail
+- Video duration (when available)
+- Video title
+- Channel avatar
+- Channel name
+- View count (mock data)
+- Published time (mock data)
+- More options menu
+
+Add category filters:
+- All
+- Music
+- Gaming
+- Programming
+- Technology
+- Live
+- Podcasts
+- Education
+
+Provide at least 24 realistic mock videos.
+
+Use responsive CSS Grid with appropriate breakpoints.
+
+### C. Video Watch Page
+
+Route: `/watch?v=VIDEO_ID`
+
+Features:
+- Responsive 16:9 video player.
+- Play YouTube videos using the official iframe embed URL.
+- Video title.
+- Channel information.
+- Subscribe button.
+- Like/Unlike.
+- Share.
+- Save to Watch Later.
+- Description section.
+- Mock comments section.
+- Related video recommendations.
+
+Use the official YouTube iframe player for external YouTube videos.
+
+Handle videos that cannot be embedded gracefully.
+
+### D. Import YouTube Video by URL
+
+This feature is mandatory.
+
+Create a modal allowing users to paste a YouTube video URL.
+
+Support:
+- youtube.com/watch?v=VIDEO_ID
+- youtu.be/VIDEO_ID
+- youtube.com/shorts/VIDEO_ID
+- youtube.com/embed/VIDEO_ID
+- youtube.com/live/VIDEO_ID
+- URLs containing additional query parameters.
+
+Requirements:
+1. Validate the URL.
+2. Extract the YouTube video ID.
+3. Reject invalid URLs.
+4. Prevent duplicate video imports.
+5. Generate the thumbnail using the YouTube thumbnail URL.
+6. Allow users to enter a custom title and channel name.
+7. Add imported videos to the homepage.
+8. Save imported videos to LocalStorage.
+9. Restore imported videos after page refresh.
+10. Allow users to remove imported videos.
+11. Display helpful error messages.
+
+Do not attempt to bypass YouTube embedding restrictions or scrape protected metadata.
+
+### E. Search Functionality
+
+Implement client-side search across:
+- Video title
+- Channel name
+- Category
+
+Requirements:
+- Case-insensitive search.
+- Search results page.
+- Empty results state.
+- Clear search button.
+- Keyboard Enter support.
+
+### F. Shorts Page
+
+Create a vertical Shorts viewing interface.
+
+Features:
+- Vertical video layout.
+- Next/previous navigation.
+- Like button.
+- Comments button.
+- Share button.
+- Responsive mobile design.
+
+Use mock Shorts data and supported YouTube embeds.
+
+### G. User Features
+
+Implement frontend-only interactions:
+- Like/Unlike videos.
+- Subscribe/Unsubscribe channels.
+- Save to Watch Later.
+- Video watch history.
+- Create playlists.
+- Add/remove videos from playlists.
+
+Persist all relevant state using LocalStorage.
+
+Make it clear that these actions are local demo features, not real YouTube account actions.
+
+### H. Theme and Responsive Design
+
+Requirements:
+- Light and dark themes.
+- Save theme preference.
+- Responsive desktop, tablet, and mobile layouts.
+- Modern typography.
+- Skeleton loading states.
+- Hover effects and transitions.
+- Accessible keyboard navigation.
+- Proper focus states.
+- Avoid unnecessary animations.
+
+The interface should feel polished, fast, and similar in usability to YouTube.
+
+## 3. Project Architecture
+
+Use the following suggested structure:
+
+```text
+src/
+├── app/
+│   ├── App.tsx
+│   └── router.tsx
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   ├── Sidebar.tsx
+│   │   └── MainLayout.tsx
+│   ├── video/
+│   │   ├── VideoCard.tsx
+│   │   ├── VideoGrid.tsx
+│   │   ├── VideoPlayer.tsx
+│   │   └── VideoActions.tsx
+│   ├── import/
+│   │   └── ImportVideoModal.tsx
+│   └── ui/
+├── pages/
+│   ├── HomePage.tsx
+│   ├── WatchPage.tsx
+│   ├── SearchPage.tsx
+│   ├── ShortsPage.tsx
+│   ├── HistoryPage.tsx
+│   ├── PlaylistPage.tsx
+│   └── NotFoundPage.tsx
+├── hooks/
+├── store/
+├── services/
+├── utils/
+│   └── youtube.ts
+├── types/
+├── data/
+│   └── mockVideos.ts
+├── styles/
+│   └── globals.css
+└── main.tsx
+```
+
+You may improve the architecture if necessary.
+
+## 4. Code Quality Requirements
+
+- Use TypeScript strict mode.
+- Use functional React components and hooks.
+- Avoid `any` where possible.
+- Keep business logic separate from UI components.
+- Create reusable components.
+- Use proper error handling.
+- Avoid unnecessary dependencies.
+- Do not use dangerouslySetInnerHTML for user input.
+- Validate YouTube URLs with the URL API and strict hostname checking.
+- Avoid hardcoded mock data inside components.
+- Implement accessible buttons, inputs, dialogs, and navigation.
+- Keep the code readable and maintainable.
+
+## 5. Implementation Workflow
+
+Execute the project in phases:
+
+**Phase 1 — Setup**
+- Inspect the current workspace.
+- If empty, initialize Vite + React + TypeScript.
+- Install dependencies.
+- Configure Tailwind CSS.
+- Create project architecture.
+
+**Phase 2 — Layout**
+- Implement Header.
+- Implement Sidebar.
+- Implement responsive MainLayout.
+- Implement theme switching.
+
+**Phase 3 — Homepage**
+- Create mock video data.
+- Build VideoCard and VideoGrid.
+- Add category filtering.
+
+**Phase 4 — Video Playback**
+- Implement WatchPage.
+- Implement iframe player.
+- Implement related videos and comments.
+
+**Phase 5 — Import Functionality**
+- Build ImportVideoModal.
+- Implement URL parsing and validation.
+- Persist imported videos in LocalStorage.
+
+**Phase 6 — Additional Features**
+- Search.
+- Shorts.
+- History.
+- Likes.
+- Subscriptions.
+- Watch Later.
+- Playlists.
+
+**Phase 7 — Testing and Polish**
+- Verify navigation.
+- Verify responsive layout.
+- Verify LocalStorage persistence.
+- Verify import URL functionality.
+- Verify theme switching.
+- Fix TypeScript errors.
+- Fix build errors.
+- Run lint checks.
+- Add a README with installation and usage instructions.
+
+## 6. Execution Instructions
+
+Do not stop after creating a plan.
+
+Implement the actual working application in the current VS Code workspace.
+
+You are authorized to create and modify project files and install necessary npm dependencies within the workspace.
+
+Do not delete unrelated files or modify anything outside the project directory.
+
+After implementation:
+1. Run `npm install` if needed.
+2. Run `npm run build`.
+3. Run lint checks.
+4. Fix any errors.
+5. Report completed features.
+6. Report remaining limitations.
+7. Explain how to run the project locally.
+
+If execution is blocked by permissions, missing tools, or environment errors, explain the exact blocker instead of claiming completion.
+
+## 7. Expected Result
+
+Deliver a functional, polished, responsive YouTube-inspired frontend application.
+
+The final application must allow users to:
+- Browse videos.
+- Search videos.
+- Watch embedded YouTube videos.
+- Import YouTube videos by URL.
+- Like and save videos locally.
+- Navigate between pages.
+- Use dark/light mode.
+- Use the application on desktop and mobile.
+
+Prioritize working functionality, visual consistency, and maintainable source code over unnecessary complexity.
+
+Start implementing now.
